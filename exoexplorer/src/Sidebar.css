@@ -1,244 +1,116 @@
 .sidebar {
-    background: rgba(10, 14, 23, 0.95);
-    border: 1px solid rgba(0, 240, 255, 0.3);
-    box-shadow: 
-      0 0 20px rgba(0, 240, 255, 0.2),
-      0 0 40px rgba(123, 45, 255, 0.1);
-    /* Restul proprietăților rămân aceleași */
-  }
-  
-  .sidebar-header h2 {
-    color: #00f0ff;
-    text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
-  }
-  
-  .close-btn:hover {
-    color: #ff4da6;
-    text-shadow: 0 0 5px rgba(255, 77, 166, 0.6);
-  }
-  
-  .search-container input {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(123, 45, 255, 0.5);
-  }
-  .search-container input:focus {
-    border-color: #00ffcc;
-    box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
-  }
-  
-  .nav-btn {
-    background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(123, 45, 255, 0.2));
-    border: 1px solid rgba(0, 240, 255, 0.3);
-  }
-  .nav-btn:hover {
-    background: linear-gradient(135deg, rgba(0, 240, 255, 0.4), rgba(255, 77, 166, 0.3));
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
-  }
-  
-  .planet-type {
-    background: linear-gradient(90deg, rgba(0, 240, 255, 0.1), rgba(123, 45, 255, 0.1));
-    color: #00ffcc;
-  }
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 320px;
+  background: rgba(10, 14, 23, 0.95);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  color: white;
+  box-shadow: 
+    0 0 20px rgba(0, 240, 255, 0.2),
+    0 0 40px rgba(123, 45, 255, 0.1);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  font-family: 'Arial', sans-serif;
+  max-height: 90vh;
+  overflow-y: auto;
+}
 
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+  padding-bottom: 10px;
+}
 
+.planet-name {
+  margin: 0;
+  color: #00f0ff;
+  font-size: 1.5rem;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+}
 
-.sidebar {
-    position: fixed;
+.planet-type {
+  display: inline-block;
+  padding: 4px 10px;
+  background: linear-gradient(90deg, rgba(0, 240, 255, 0.1), rgba(123, 45, 255, 0.1));
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: #00ffcc;
+}
+
+.planet-stats {
+  margin-top: 15px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.stat-label {
+  color: #00f0ff;
+  font-weight: bold;
+}
+
+.stat-value {
+  color: #ffffff;
+}
+
+.planet-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.nav-btn {
+  padding: 10px 15px;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(123, 45, 255, 0.2));
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.4), rgba(255, 77, 166, 0.3));
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Scrollbar styling */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.3);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: calc(100% - 40px);
+    right: 20px;
     left: 20px;
-    top: 20px;
-    width: 300px;
-    background: rgba(0, 0, 0, 0.85);
-    padding: 20px;
-    border-radius: 15px;
-    color: white;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-    border: 1px solid rgba(0, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    transition: all 0.3s ease;
-    font-family: 'Arial', sans-serif;
+    top: auto;
+    bottom: 20px;
+    max-height: 30vh;
   }
-  
-  .sidebar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    border-bottom: 1px solid rgba(0, 255, 255, 0.3);
-    padding-bottom: 10px;
-  }
-  
-  .sidebar-header h2 {
-    margin: 0;
-    color: #00ffff;
-    font-size: 1.5rem;
-  }
-  
-  .close-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: color 0.2s;
-  }
-  
-  .close-btn:hover {
-    color: #00ffff;
-  }
-  
-  .search-container {
-    margin-bottom: 15px;
-  }
-  
-  .search-container input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid rgba(0, 255, 255, 0.3);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    outline: none;
-  }
-  
-  .search-container input:focus {
-    border-color: #00ffff;
-    box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
-  }
-  
-  .planet-details {
-    margin-top: 15px;
-  }
-  
-  .planet-header {
-    margin-bottom: 15px;
-  }
-  
-  .planet-name {
-    margin: 0;
-    color: #00ffff;
-    font-size: 1.8rem;
-  }
-  
-  .planet-type {
-    display: inline-block;
-    margin-top: 5px;
-    padding: 3px 8px;
-    background: rgba(0, 255, 255, 0.2);
-    border-radius: 10px;
-    font-size: 0.8rem;
-  }
-  
-  .planet-stats {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 15px;
-  }
-  
-  .stat-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-  }
-  
-  .stat-item:last-child {
-    margin-bottom: 0;
-  }
-  
-  .stat-label {
-    color: #00ffff;
-    font-weight: bold;
-  }
-  
-  .stat-value {
-    color: white;
-  }
-  
-  .planet-description {
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    margin-bottom: 15px;
-    line-height: 1.5;
-  }
-  
-  .planet-navigation {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .nav-btn {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    background: rgba(0, 255, 255, 0.2);
-    color: white;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  
-  .nav-btn:hover {
-    background: rgba(0, 255, 255, 0.4);
-    transform: translateY(-2px);
-  }
-  
-  .prev-btn {
-    margin-right: 10px;
-  }
-  
-  .next-btn {
-    margin-left: 10px;
-  }
-  
-  .loading-spinner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-  
-  .spinner {
-    border: 4px solid rgba(0, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top: 4px solid #00ffff;
-    width: 30px;
-    height: 30px;
-    animation: spin 1s linear infinite;
-    margin-bottom: 10px;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  .no-planet {
-    text-align: center;
-    padding: 20px;
-    color: #ccc;
-  }
-  
-  .sidebar-toggle {
-    position: fixed;
-    left: 20px;
-    top: 20px;
-    background: rgba(0, 0, 0, 0.85);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 1000;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-    transition: all 0.3s ease;
-  }
-  
-  .sidebar-toggle:hover {
-    background: rgba(0, 255, 255, 0.2);
-    transform: scale(1.1);
-  }
-  
+}
