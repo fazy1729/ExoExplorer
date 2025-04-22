@@ -43,20 +43,8 @@ async def get_celestial_objects():
     ORDER BY phot_g_mean_mag
     """
 
-
-    planets_query = """
-    SELECT TOP 5
-        pl_name,
-        pl_bmassj,
-        pl_rade,
-        ra,
-        dec
-    FROM pscomppars
-    WHERE pl_bmassj IS NOT NULL AND pl_rade IS NOT NULL
-    """
-
-
     
+
     
     # Sample planet data
     planets_data = [
