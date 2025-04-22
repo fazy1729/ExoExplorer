@@ -1,32 +1,32 @@
 import React from 'react';
 import './Sidebar.css';
 
-const Sidebar = ({ planet, onNext, onPrev }) => {
-  if (!planet) return null;
+const Sidebar = ({ celestialObject, onNext, onPrev, type, position = 'left' }) => {
+  if (!celestialObject) return null;
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${position === 'right' ? 'sidebar-right' : ''}`}>
       <div className="sidebar-header">
-        <h2 className="planet-name">{planet.name}</h2>
-        <span className="planet-type">{planet.type}</span>
+        <h2 className="celestial-name">{celestialObject.name}</h2>
+        <span className="celestial-type">{type === 'star' ? 'Star' : celestialObject.type}</span>
       </div>
       
-      <div className="planet-details">
-        <div className="planet-stats">
-          {planet.type === 'Star' ? (
+      <div className="celestial-details">
+        <div className="celestial-stats">
+          {type === 'star' ? (
             <>
               <div className="stat-item">
                 <span className="stat-label">Magnitude:</span>
-                <span className="stat-value">{planet.magnitude?.toFixed(2)}</span>
+                <span className="stat-value">{celestialObject.magnitude?.toFixed(2)}</span>
               </div>
               <div className="stat-item">
                 <span className="stat-label">Color Index:</span>
-                <span className="stat-value">{planet.color_index?.toFixed(2)}</span>
+                <span className="stat-value">{celestialObject.color_index?.toFixed(2)}</span>
               </div>
               <div className="stat-item">
                 <span className="stat-label">Distance:</span>
                 <span className="stat-value">
-                  {planet.parallax ? (1000/planet.parallax).toFixed(2) + ' parsecs' : 'Unknown'}
+                  {celestialObject.parallax ? (1000/celestialObject.parallax).toFixed(2) + ' parsecs' : 'Unknown'}
                 </span>
               </div>
             </>
@@ -34,18 +34,18 @@ const Sidebar = ({ planet, onNext, onPrev }) => {
             <>
               <div className="stat-item">
                 <span className="stat-label">Description:</span>
-                <span className="stat-value">{planet.description}</span>
+                <span className="stat-value">{celestialObject.description}</span>
               </div>
               <div className="stat-item">
                 <span className="stat-label">Radius:</span>
-                <span className="stat-value">{planet.radius} Earth radii</span>
+                <span className="stat-value">{celestialObject.radius} Earth radii</span>
               </div>
             </>
           )}
         </div>
       </div>
 
-      <div className="planet-navigation">
+      <div className="celestial-navigation">
         <button className="nav-btn prev-btn" onClick={onPrev}>Previous</button>
         <button className="nav-btn next-btn" onClick={onNext}>Next</button>
       </div>

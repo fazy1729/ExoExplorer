@@ -516,10 +516,22 @@ function App() {
       {loading && <div className="loading-overlay">Loading universe...</div>}
       {error && <div className="error-overlay">Error: {error}</div>}
       <canvas id="ThreeJs" />
+      
+      {/* Sidebar pentru planete */}
       <Sidebar
-        planet={celestialData.planets[currentPlanetIndex]}
+        celestialObject={celestialData.planets[currentPlanetIndex]}
         onNext={handleNextPlanet}
         onPrev={handlePrevPlanet}
+        type="planet"
+      />
+      
+      {/* Sidebar pentru stele */}
+      <Sidebar
+        celestialObject={celestialData.stars[currentStarIndex]}
+        onNext={handleNextStar}
+        onPrev={handlePrevStar}
+        type="star"
+        position="right" // Adaugă o poziție diferită pentru a le afișa pe partea opusă
       />
     </div>
   );
