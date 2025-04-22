@@ -1,42 +1,167 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Resetări și stiluri de bază */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Elimină orice scroll */
+  font-family: 'Arial', sans-serif;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Containerul principal */
+.App {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+}
+
+/* Canvas-ul ThreeJS */
+#ThreeJs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  outline: none; /* Elimină conturul la focus */
+  z-index: 0;
+}
+
+/* Overlay-uri */
+.loading-overlay,
+.error-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 2rem;
+  z-index: 100;
+  pointer-events: none; /* Permite interacțiunea cu elementele din spate */
+}
+
+.error-overlay {
+  background-color: rgba(20, 0, 0, 0.9);
+  color: #ff5555;
+}
+
+/* Sidebar */
+.sidebar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 300px;
+  max-height: calc(100vh - 40px);
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+  z-index: 10;
+  overflow-y: auto; /* Scroll doar în interiorul sidebar-ului dacă e necesar */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.sidebar h2 {
+  color: #4fc3f7;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.sidebar p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* Butoane */
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.navigation button {
+  flex: 1;
+  padding: 10px;
+  background-color: rgba(79, 195, 247, 0.2);
+  color: white;
+  border: 1px solid #4fc3f7;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.navigation button:hover {
+  background-color: rgba(79, 195, 247, 0.4);
+}
+
+.navigation button:active {
+  background-color: rgba(79, 195, 247, 0.6);
+}
+
+/* Etichetele planetelor/stelelor */
+.planet-label {
+  position: absolute;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Media queries pentru ecrane mici */
+@media (max-width: 768px) {
+  .sidebar {
+    width: calc(100% - 40px);
+    top: auto;
+    bottom: 20px;
+    max-height: 30vh;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .navigation {
+    flex-direction: column;
+  }
+  
+  .loading-overlay,
+  .error-overlay {
+    font-size: 1.5rem;
+    padding: 0 20px;
+    text-align: center;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Ascunde scrollbar-ul dar păstrează funcționalitatea */
+.sidebar::-webkit-scrollbar {
+  width: 5px;
 }
 
-.card {
-  padding: 2em;
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 }
 
-.read-the-docs {
-  color: #888;
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(79, 195, 247, 0.5);
+  border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(79, 195, 247, 0.8);
 }

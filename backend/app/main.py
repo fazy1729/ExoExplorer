@@ -28,22 +28,59 @@ GAIA_TAP_URL = "https://gea.esac.esa.int/tap-server/tap/sync"
 
 @app.get("/celestial-objects")
 async def get_celestial_objects():
-    # Queries
-    stars_query = """..."""  # păstrăm interogarea pentru stele
-    planets_query = """
-    SELECT TOP 5
-        pl_name,
-        pl_bmassj,
-        pl_rade,
-        ra,
-        dec
-    FROM pscomppars
-    WHERE pl_bmassj IS NOT NULL AND pl_rade IS NOT NULL
+    """Get both stars and planets data"""
+    # Get stars from Gaia
+    stars_query = """
+    SELECT TOP 5 
+        source_id,
+        ra, 
+        dec,
+        parallax,
+        phot_g_mean_mag,
+        bp_rp
+    FROM gaiadr3.gaia_source
+    WHERE parallax IS NOT NULL
+    ORDER BY phot_g_mean_mag
     """
 
+
+    
+    
+    # Sample planet data
+    planets_data = [
+        {
+            "mass": 15,
+            "name": "Earth",
+            "type": "Planet",
+            "position": {"x": 0, "y": 0, "z": 0},
+            "description": "Our home planet",
+            "radius": 1.0,
+            "texture_url": "/static/8k_earth_daymap.jpg.jpg"
+        },
+        {
+            "mass": 120,
+            "name": "Jupiter",
+            "type": "Gas Giant",
+            "position": {"x": 10, "y": 0, "z": 0},
+            "description": "Big gas giant",
+            "radius": 2.0,
+            "texture_url": "/static/8k_jupiter.jpg"
+        },
+        
+        {
+            "mass": 60,
+            "name": "Neptune",
+            "type": "Ice Giant",
+            "position": {"x": 5, "y": 0, "z": -20},
+            "description": "Blue ice giant",
+            "radius": 1.6,
+            "texture_url": "/static/neptune_4k.jpg"
+        }
+    ]
+    
     try:
         async with httpx.AsyncClient() as client:
-            # 1. Get stars
+            # Get stars
             stars_response = await client.post(
                 GAIA_TAP_URL,
                 data={
@@ -54,7 +91,7 @@ async def get_celestial_objects():
                 },
                 headers={"Content-Type": "application/x-www-form-urlencoded"}
             )
-
+            
             stars = []
             if stars_response.status_code == 200:
                 stars_data = stars_response.json().get('data', [])
@@ -68,50 +105,17 @@ async def get_celestial_objects():
                     "magnitude": star[4],
                     "color_index": star[5],
                     "position": convert_equatorial_to_3d(star[1], star[2], star[3]),
-                    "radius": 0.5 + (15 - star[4]) / 10,
-                    "texture_url": "/static/star_texture.jpg",
-                    "color": get_star_color(star[5]),
-                    "mass": 10 + (15 - star[4]) * 2
+                    "radius": 0.5 + (15 - star[4]) / 10,  # Adjust size based on magnitude
+                    "texture_url": "/static/star_texture.jpg",  # Add a default star texture
+                    "color": get_star_color(star[5]),  # Function to get color based on temperature
+                    "mass": 10 + (15 - star[4]) * 2  # Estimate mass based on magnitude
                 } for star in stars_data]
-
-            # 2. Get planets (simulat aici cu aceeași interfață TAP)
-            planet_response = await client.post(
-                GAIA_TAP_URL,  # aici ar trebui să fie un TAP care suportă planete, nu Gaia
-                data={
-                    "REQUEST": "doQuery",
-                    "LANG": "ADQL",
-                    "FORMAT": "json",
-                    "QUERY": planets_query
-                },
-                headers={"Content-Type": "application/x-www-form-urlencoded"}
-            )
-
-            planets_data = []
-            if planet_response.status_code == 200:
-                planet_results = planet_response.json().get("data", [])
-                for planet in planet_results:
-                    name = planet[0]
-                    mass = planet[1] * 318  # Jupiter mass → Earth mass approx
-                    radius = planet[2]
-                    ra = planet[3]
-                    dec = planet[4]
-                    position = convert_equatorial_to_3d(ra, dec, 10)  # presupunem parallax default
-
-                    planets_data.append({
-                        "mass": mass,
-                        "name": name,
-                        "type": "Exoplanet",
-                        "position": position,
-                        "description": f"Exoplanet {name}",
-                        "radius": radius,
-                        "texture_url": "/static/exoplanet_texture.jpg"
-                    })
-
+            
             return {
                 "planets": planets_data,
                 "stars": stars
             }
-
+    
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
