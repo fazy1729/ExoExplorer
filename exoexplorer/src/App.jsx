@@ -74,7 +74,7 @@ const createAdditionalWarpedGrid = ({ planet, star }) => {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.position.set(0, -5, 0);
+  mesh.position.set(0, 0, 0);
   mesh.renderOrder = -1;
   return mesh;
 };
@@ -144,7 +144,7 @@ const createAnimatedWarpedGrid = ({ planet, star }) => {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.position.set(0, -5, 0);
+  mesh.position.set(0, 0, 0);
   mesh.renderOrder = -1;
   return mesh;
 };
@@ -366,6 +366,7 @@ function App() {
     };
 
     const animate = () => {
+      
       requestAnimationFrame(animate);
       controls.update();
 
