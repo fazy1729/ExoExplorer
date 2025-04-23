@@ -52,7 +52,7 @@ async def get_celestial_objects():
             "mass": 15,
             "name": "Earth",
             "type": "Planet",
-            "position": {"x": 0, "y": 0, "z": 0},
+            "position": {"x": 10000, "y": 10000, "z": 10000},
             "description": "Our home planet",
             "radius": 1.0,
             "texture_url": "/static/8k_earth_daymap.jpg"
