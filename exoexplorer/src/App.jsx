@@ -178,30 +178,51 @@ function App() {
     const fetchData = async () => {
       try {
         setLoading(true);
+        
+        // Initial fetch of minimal data (for basic setup)
         const response = await fetch('http://localhost:8000/celestial-objects');
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
         
-        // Modified orbit distances to be more realistic
+        // Simulate gradual loading by slowly adding planets data
         const planetsWithOrbits = data.planets.map((planet, index) => ({
           ...planet,
-          orbitRadius: planet.orbitRadius || (50 + index * 30), // Systematic spacing
-          orbitSpeed: planet.orbitSpeed || (0.0005 + index * 0.0002), // Slower for outer planets
+          orbitRadius: planet.orbitRadius || (50 + index * 30),
+          orbitSpeed: planet.orbitSpeed || (0.0005 + index * 0.0002),
           orbitAngle: planet.orbitAngle || Math.random() * Math.PI * 2,
-          orbitPlaneOffset: (Math.random() - 0.5) * 5 // Small variation in Y position
+          orbitPlaneOffset: (Math.random() - 0.5) * 5
         }));
         
-        setCelestialData({ ...data, planets: planetsWithOrbits });
+        // First set the stars data and some basic planet data
+        setCelestialData({ 
+          stars: data.stars,
+          planets: [] // Start with empty planets
+        });
+        
+        // Gradually set planets with data (simulate progressive loading)
+        for (let i = 0; i < planetsWithOrbits.length; i++) {
+          setCelestialData((prevData) => ({
+            ...prevData,
+            planets: [...prevData.planets, planetsWithOrbits[i]]
+          }));
+          
+          // Add a small delay to make the process feel gradual
+          await new Promise(resolve => setTimeout(resolve, 200)); // 200ms delay between each planet
+        }
+  
         setError(null);
       } catch (error) {
         console.error('Error fetching celestial data:', error);
         setError(error.message);
       } finally {
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000); // Delay by 2000ms = 2 seconds
       }
     };
     fetchData();
   }, []);
+  
 
   // Initialize scene
   useEffect(() => {
@@ -837,10 +858,26 @@ function App() {
 
   return (
     <div className="App">
-      {loading && <div className="loading-overlay">Loading universe...</div>}
-      {error && <div className="error-overlay">Error: {error}</div>}
-      <canvas id="ThreeJs" />
-      
+  {/* Canvas is always rendered for Three.js */}
+  <canvas id="ThreeJs" />
+
+  {/* Loading Overlay (visible while loading) */}
+  {loading && (
+    <div className="loading-overlay">
+      Loading universe...
+    </div>
+  )}
+
+  {/* Error message */}
+  {error && (
+    <div className="error-overlay">
+      Error: {error}
+    </div>
+  )}
+
+  {/* Main UI - only shown once loading is complete */}
+  {!loading && (
+    <>
       {/* Planet Sidebar */}
       <Sidebar
         celestialObject={celestialData.planets[currentPlanetIndex]}
@@ -849,7 +886,7 @@ function App() {
         type="planet"
         position="left"
       />
-      
+
       {/* Star Sidebar */}
       <Sidebar
         celestialObject={celestialData.stars[currentStarIndex]}
@@ -858,7 +895,7 @@ function App() {
         type="star"
         position="right"
       />
-      
+
       {/* Super Object Button */}
       <button 
         className="super-object-button"
@@ -866,7 +903,10 @@ function App() {
       >
         {showSuperObject ? 'Return to Planets' : 'View Super Cool Object!'}
       </button>
-    </div>
+    </>
+  )}
+</div>
+
   );
 }
 

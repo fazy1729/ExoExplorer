@@ -1,13 +1,20 @@
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Depends, status
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
+from typing import Optional
 import httpx
 import logging
 from fastapi.middleware.cors import CORSMiddleware
 import math
+from datetime import datetime, timedelta
+from jose import JWTError, jwt
+from passlib.context import CryptContext
+import secrets
+from pathlib import Path
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+
+
 
 app = FastAPI()
 
@@ -26,12 +33,14 @@ app.add_middleware(
 
 GAIA_TAP_URL = "https://gea.esac.esa.int/tap-server/tap/sync"
 
+
+
 @app.get("/celestial-objects")
 async def get_celestial_objects():
     """Get both stars and planets data"""
     # Get stars from Gaia
     stars_query = """
-    SELECT TOP 5 
+    SELECT TOP 10
         source_id,
         ra, 
         dec,

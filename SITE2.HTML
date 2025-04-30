@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellar Dynamics | Cosmic Exploration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Space+Grotesk:wght@300;400;500;700&display=swap');
+        
+        :root {
+            --primary: #0a0e17;
+            --secondary: #1a2138;
+            --accent: #3b82f6;
+            --neon: #60a5fa;
+            --glow: rgba(59, 130, 246, 0.7);
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--primary);
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4, .orbitron {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Cosmic Background */
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background: radial-gradient(ellipse at bottom, var(--primary) 0%, #000000 100%);
+        }
+        
+        /* Animated Stars */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="0.5" fill="white"/><circle cx="20" cy="30" r="0.8" fill="white"/><circle cx="30" cy="50" r="0.3" fill="white"/><circle cx="40" cy="70" r="0.6" fill="white"/><circle cx="50" cy="90" r="0.4" fill="white"/><circle cx="60" cy="20" r="0.7" fill="white"/><circle cx="70" cy="40" r="0.5" fill="white"/><circle cx="80" cy="60" r="0.9" fill="white"/><circle cx="90" cy="80" r="0.2" fill="white"/></svg>');
+            animation: stars-animation 200s linear infinite;
+        }
+        
+        @keyframes stars-animation {
+            from { background-position: 0 0; }
+            to { background-position: -10000px 5000px; }
+        }
+        
+        /* Nebula Clouds */
+        .nebula {
+            position: fixed;
+            width: 150%;
+            height: 150%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(124, 58, 237, 0.05) 0%, transparent 25%);
+            animation: nebula-move 60s linear infinite alternate;
+        }
+        
+        @keyframes nebula-move {
+            0% { transform: translate(-10%, -10%); }
+            100% { transform: translate(10%, 10%); }
+        }
+        
+        /* Planets */
+        .planet {
+            position: fixed;
+            border-radius: 50%;
+            filter: drop-shadow(0 0 20px var(--glow));
+            z-index: -1;
+            will-change: transform;
+        }
+        
+        #planet1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at 30% 30%, #3b82f6, #1e40af);
+            top: 15%;
+            right: 10%;
+            animation: float 25s ease-in-out infinite, rotate 120s linear infinite;
+        }
+        
+        #planet2 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle at 30% 30%, #f59e0b, #b45309);
+            bottom: 10%;
+            left: 15%;
+            animation: float 20s ease-in-out infinite reverse, rotate 80s linear infinite reverse;
+        }
+        
+        #planet3 {
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle at 30% 30%, #10b981, #065f46);
+            top: 60%;
+            right: 25%;
+            animation: float 30s ease-in-out infinite, rotate 150s linear infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Space-time Distortion Effect */
+        .distortion {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            animation: pulse 8s ease-in-out infinite alternate;
+            opacity: 0.5;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.3; }
+            100% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.7; }
+        }
+        
+        /* UI Elements */
+        .neon-text {
+            text-shadow: 0 0 5px var(--neon), 0 0 10px var(--neon), 0 0 20px var(--neon);
+        }
+        
+        .neon-border {
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 10px var(--glow), 0 0 20px var(--glow);
+            border: 1px solid var(--neon);
+            transition: all 0.3s ease;
+        }
+        
+        .neon-border::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                var(--neon) 50%,
+                transparent 55%
+            );
+            transform: rotate(30deg);
+            opacity: 0.3;
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+        
+        .neon-border:hover {
+            box-shadow: 0 0 15px var(--glow), 0 0 30px var(--glow);
+            transform: translateY(-2px);
+        }
+        
+        .holographic-card {
+            background: rgba(26, 33, 56, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .holographic-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon), transparent);
+            opacity: 0.5;
+        }
+        
+        .holographic-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.3);
+            border: 1px solid rgba(96, 165, 250, 0.4);
+        }
+        
+        .glow {
+            filter: drop-shadow(0 0 8px var(--neon));
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd, #60a5fa, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: gradient 3s linear infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+        
+        /* Special Launch Button */
+        .launch-btn {
+            position: relative;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+        
+        .launch-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .launch-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.7);
+        }
+        
+        .launch-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .launch-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                rgba(255, 255, 255, 0.8) 50%,
+                transparent 55%
+            );
+            transform: rotate(30deg);
+            opacity: 0;
+            animation: shine 3s infinite;
+            transition: opacity 0.3s ease;
+        }
+        
+        .launch-btn:hover::after {
+            opacity: 0.6;
+        }
+        
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: var(--neon);
+            box-shadow: 0 0 5px var(--neon);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+        
+        /* Transition Effects */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: 9999;
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            #planet1, #planet2, #planet3 {
+                display: none;
+            }
+            
+            .distortion {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cosmic Background Elements -->
+    <div class="cosmic-bg"></div>
+    <div class="stars"></div>
+    <div class="nebula"></div>
+    <div id="planet1" class="planet"></div>
+    <div id="planet2" class="planet"></div>
+    <div id="planet3" class="planet"></div>
+    <div class="distortion"></div>
+    
+    <!-- Page Transition Overlay -->
+    <div class="page-transition" id="pageTransition"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-opacity-50 bg-slate-900/50 border-b border-slate-800/30 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span class="text-2xl font-bold orbitron gradient-text">STELLAR DYNAMICS</span>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="nav-link text-slate-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#relativity" class="nav-link text-slate-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Relativity</a>
+                        <a href="#planets" class="nav-link text-slate-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Planets</a>
+                        <a href="#stars" class="nav-link text-slate-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Stars</a>
+                        <a href="#contact" class="nav-link text-slate-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <button id="launchBtn" class="launch-btn px-6 py-3 rounded-full text-sm font-medium orbitron flex items-center">
+                        <i class="fas fa-rocket mr-2"></i> LAUNCH EXPLORER
+                    </button>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-slate-200 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
+            <div class="relative z-10">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 orbitron">
+                    <span class="gradient-text">COSMIC</span> <span class="neon-text">FRONTIER</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto mb-10 leading-relaxed">
+                    Journey through the fabric of spacetime where celestial wonders and Einstein's relativity 
+                    reveal the universe's deepest secrets. Prepare for an odyssey beyond imagination.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <button class="launch-btn px-8 py-4 rounded-full text-lg font-medium orbitron flex items-center justify-center mx-auto sm:mx-0">
+                        <i class="fas fa-play mr-3"></i> BEGIN VOYAGE
+                    </button>
+                    <button class="neon-border px-8 py-4 rounded-full text-lg font-medium orbitron text-white hover:bg-slate-800/50 transition-all duration-300 flex items-center justify-center mx-auto sm:mx-0">
+                        <i class="fas fa-graduation-cap mr-3"></i> LEARN MORE
+                    </button>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <i class="fas fa-chevron-down text-2xl text-slate-400 animate-bounce"></i>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Relativity Section -->
+    <section id="relativity" class="relative py-28 bg-gradient-to-b from-slate-900/0 via-slate-900/30 to-slate-900/0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-6xl font-bold orbitron mb-6">
+                    THEORY OF <span class="gradient-text">RELATIVITY</span>
+                </h2>
+                <div class="w-32 h-1 bg-gradient-to-r from-blue-500 to-transparent mx-auto mb-8"></div>
+                <p class="text-xl text-slate-300 max-w-4xl mx-auto">
+                    Einstein's revolutionary framework that transformed our understanding of space, time, and gravity.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="holographic-card p-8 rounded-2xl">
+                    <div class="flex items-center mb-6">
+                        <div class="text-blue-400 text-5xl mr-4 glow">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold orbitron">Space-Time Continuum</h3>
+                    </div>
+                    <p class="text-slate-300 mb-6 text-lg leading-relaxed">
+                        The universe isn't just space with time passing through it - space and time are interwoven into 
+                        a single continuum that can warp and bend under the influence of gravity.
+                    </p>
+                    <div class="bg-slate-800/50 rounded-xl p-6 mb-6">
+                        <p class="text-blue-300 italic font-medium">
+                            "Matter tells spacetime how to curve, and spacetime tells matter how to move."
+                        </p>
+                        <p class="text-slate-400 mt-2">— John Archibald Wheeler</p>
+                    </div>
+                    <button class="neon-border px-6 py-3 rounded-full text-base font-medium orbitron text-white hover:bg-slate-800/50 transition-all duration-300 w-full">
+                        EXPLORE SPACETIME
+                    </button>
+                </div>
+                
+                <div class="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/30 to-purple-900/30 flex items-center justify-center">
+                        <i class="fas fa-globe-americas text-8xl text-blue-400 opacity-30"></i>
+                    </div>
+                    <div class="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/80 to-transparent">
+                        <h3 class="text-2xl font-bold orbitron mb-2">Gravitational Waves</h3>
+                        <p class="text-slate-300 mb-4">
+                            Ripples in the fabric of spacetime caused by the most violent cosmic events.
+                        </p>
+                        <button class="neon-border px-6 py-2 rounded-full text-sm font-medium orbitron text-white hover:bg-slate-800/50 transition-all duration-300 self-start">
+                            LEARN MORE
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+                <div class="holographic-card p-8 rounded-xl group">
+                    <div class="text-blue-400 text-4xl mb-4 glow transition-transform duration-300 group-hover:scale-110">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold orbitron mb-3">Time Dilation</h3>
+                    <p class="text-slate-300">
+                        Time passes slower in stronger gravitational fields and at higher velocities relative to other observers.
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-slate-700/50">
+                        <button class="text-blue-400 text-sm font-medium orbitron flex items-center">
+                            EXPERIMENT <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="holographic-card p-8 rounded-xl group">
+                    <div class="text-blue-400 text-4xl mb-4 glow transition-transform duration-300 group-hover:scale-110">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                    <h3 class="text-xl font-bold orbitron mb-3">Length Contraction</h3>
+                    <p class="text-slate-300">
+                        Objects moving at relativistic speeds appear shorter in the direction of motion to stationary observers.
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-slate-700/50">
+                        <button class="text-blue-400 text-sm font-medium orbitron flex items-center">
+                            VISUALIZE <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="holographic-card p-8 rounded-xl group">
+                    <div class="text-blue-400 text-4xl mb-4 glow transition-transform duration-300 group-hover:scale-110">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3 class="text-xl font-bold orbitron mb-3">Mass-Energy</h3>
+                    <p class="text-slate-300">
+                        The famous E=mc² equation shows that mass can be converted to energy and vice versa.
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-slate-700/50">
+                        <button class="text-blue-400 text-sm font-medium orbitron flex items-center">
+                            CALCULATE <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Planets Section -->
+    <section id="planets" class="relative py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-6xl font-bold orbitron mb-6">
+                    <span class="gradient-text">PLANETARY</span> SYSTEMS
+                </h2>
+                <div class="w-32 h-1 bg-gradient-to-r from-blue-500 to-transparent mx-auto mb-8"></div>
+                <p class="text-xl text-slate-300 max-w-4xl mx-auto">
+                    Worlds beyond our own, each with unique characteristics and mysteries waiting to be uncovered.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="holographic-card rounded-xl overflow-hidden group">
+                    <div class="relative h-64 bg-gradient-to-br from-blue-900/30 to-purple-900/30 flex items-center justify-center">
+                        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-blue-400 to-blue-700 shadow-lg group-hover:scale-110 transition-transform duration-500"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold orbitron mb-2">Gas Giants</h3>
+                        <p class="text-slate-300 text-sm mb-4">
+                            Massive planets composed mainly of hydrogen and helium with no solid surface.
+                        </p>
+                        <button class="neon-border px-4 py-2 rounded-full text-xs font-medium orbitron text-white hover:bg-slate-800/50 transition-all duration-300">
+                            EXPLORE
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="holographic-card rounded-xl overflow-hidden group">
+                    <div class="relative h-64 bg-gradient-to-br from-amber-900/30 to-red-900/30 flex items-center justify-center">
+                        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-amber-400 to-red-600 shadow-lg group-hover:scale-110 transition-transform duration-500"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold orbitron mb-2">Terrestrial Worlds</h3>
+                        <p class="text-slate-300 text-sm mb-4">
+                            Rocky planets with solid surfaces, similar in composition to Earth.
+                        </p>
+                        <button class="neon-border px-4 py-2 rounded-full text-xs font-medium orbitron text-white hover:bg-slate-800/50 transition-all duration-300">
+                            EXPLORE
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="holographic-card rounded-xl overflow-hidden group">
+                    <div class="relative h-64 bg-gradient-to-br from-emerald-900/30 to-teal-900/30 flex items-center justify-center">
+                        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 shadow-lg group-hover:scale-110 transition-transform duration-500"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold orbitron mb-2">Ice Giants</h3>
+                        <p class="text-slate-300 text-sm mb-4">
+                            Planets composed mainly of elements heavier than hydrogen and helium.
+                        </p>
+                        <button class="neon-border px-4 py-2 rounded-full text-xs font-medium orbitron text-white hover:bg-slate-800/50 transition-all duration-300">
+                            EXPLORE
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="holographic-card rounded-xl overflow-hidden group">
+                    <div class="relative h-64 bg-gradient-to-br from-purple-900/30 to-pink-900/30 flex items-center justify-center">
+                        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-purple-400 to-pink-600 shadow-lg group-hover:scale-110 transition-transform duration-500"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold orbitron mb-2">Exoplanets</h3>
+                        <p class="text-slate-300 text-sm mb-4">
+                            Planets orbiting stars beyond our solar system with diverse characteristics.
+                        </p>
+                        <button class="neon-border px-4 py-2 rounded-full text-xs font-medium orbitron text-white hover:bg-slate-800/50 transition-all duration-300">
+                            EXPLORE
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <button class="launch-btn px-8 py-4 rounded-full text-lg font-medium orbitron">
+                    <i class="fas fa-globe-americas mr-3"></i> EXPLORE ALL PLANETS
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stars Section -->
+    <section id="stars" class="relative py-28 bg-gradient-to-b from-slate-900/0 via-slate-900/30 to-slate-900/0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-6xl font-bold orbitron mb-6">
+                    <span class="gradient-text">STELLAR</span> PHENOMENA
+                </h2>
+                <div class="w-32 h-1 bg-gradient-to-r from-blue-500 to-transparent mx-auto mb-8"></div>
+                <p class="text-xl text-slate-300 max-w-4xl mx-auto">
+                    The celestial powerhouses that shape galaxies and forge the elements of life.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                <div class="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden order-2 lg:order-1">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/30 to-amber-900/30 flex items-center justify-center">
+                        <div class="w-48 h-48 rounded-full bg-gradient-to-br from-amber-300 to-red-600 shadow-xl animate-pulse"></div>
+                    </div>
+                    <div class="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/80 to-transparent">
+                        <h3 class="text-2xl font-bold orbitron mb-2">Stellar Lifecycle</h3>
+                        <p class="text-slate-300 mb-4">
+                            From protostars to supernovae, the dramatic lives of stars across the cosmos.
+                        </p>
+                        <button class="neon-border px-6 py-2 rounded-full text-sm font-medium orbitron text-white hover:bg-slate-800/50 transition-all duration-300 self-start">
+                            WATCH SIMULATION
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="order-1 lg:order-2">
+                    <div class="holographic-card p-8 rounded-2xl mb-8">
+                        <div class="flex items-center mb-6">
+                            <div class="text-blue-400 text-5xl mr-4 glow">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold orbitron">Nuclear Fusion</h3>
+                        </div>
+                        <p class="text-slate-300 mb-6 text-lg leading-relaxed">
+                            Stars shine by converting hydrogen into helium in their cores through nuclear fusion, 
+                            releasing enormous amounts of energy in the process. This process also creates heavier 
+                            elements that are scattered across the cosmos when stars die.
+                        </p>
+                        <div class="bg-slate-800/50 rounded-xl p-6 mb-6">
+                            <p class="text-blue-300 italic font-medium">
+                                "We are all made of star-stuff."
+                            </p>
+                            <p class="text-slate-400 mt-2">— Carl Sagan</p>
+                        </div>
+                        <button class="neon-border px-6 py-3 rounded-full text-base font-medium orbitron text-white hover:bg-slate-800/50 transition-all duration-300 w-full">
+                            LEARN ABOUT FUSION
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="holographic-card p-8 rounded-xl group">
+                    <div class="text-blue-400 text-4xl mb-4 glow transition-transform duration-300 group-hover:scale-110">
+                        <i class="fas fa-meteor"></i>
+                    </div>
+                    <h3 class="text-xl font-bold orbitron mb-3">Supernovae</h3>
+                    <p class="text-slate-300">
+                        The spectacular explosions of massive stars that outshine entire galaxies briefly.
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-slate-700/50">
+                        <button class="text-blue-400 text-sm font-medium orbitron flex items-center">
+                            WATCH <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="holographic-card p-8 rounded-xl group">
+                    <div class="text-blue-400 text-4xl mb-4 glow transition-transform duration-300 group-hover:scale-110">
+                        <i class="fas fa-circle-notch"></i>
+                    </div>
+                    <h3 class="text-xl font-bold orbitron mb-3">Neutron Stars</h3>
+                    <p class="text-slate-300">
+                        Incredibly dense stellar remnants where matter is compressed to nuclear density.
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-slate-700/50">
+                        <button class="text-blue-400 text-sm font-medium orbitron flex items-center">
+                            EXPLORE <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="holographic-card p-8 rounded-xl group">
+                    <div class="text-blue-400 text-4xl mb-4 glow transition-transform duration-300 group-hover:scale-110">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3 class="text-xl font-bold orbitron mb-3">Black Holes</h3>
+                    <p class="text-slate-300">
+                        Regions of spacetime where gravity is so strong that nothing can escape, not even light.
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-slate-700/50">
+                        <button class="text-blue-400 text-sm font-medium orbitron flex items-center">
+                            SIMULATE <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="relative py-28">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="holographic-card rounded-2xl p-8 md:p-12">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-5xl font-bold orbitron mb-4">
+                        <span class="gradient-text">CONTACT</span> OUR TEAM
+                    </h2>
+                    <div class="w-24 h-1 bg-blue-400 mx-auto mb-6"></div>
+                    <p class="text-lg text-slate-300 max-w-2xl mx-auto">
+                        Have questions about the cosmos? Our astrophysicists are ready to help.
+                    </p>
+                </div>
+                
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-slate-300 mb-2">Name</label>
+                            <input type="text" id="name" class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300" placeholder="Your name">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                            <input type="email" id="email" class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300" placeholder="your@email.com">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-slate-300 mb-2">Subject</label>
+                        <input type="text" id="subject" class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300" placeholder="What's your question about?">
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-slate-300 mb-2">Message</label>
+                        <textarea id="message" rows="5" class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300" placeholder="Your cosmic inquiry..."></textarea>
+                    </div>
+                    
+                    <div class="pt-4">
+                        <button type="submit" class="launch-btn w-full px-6 py-4 rounded-full text-lg font-medium orbitron">
+                            <i class="fas fa-paper-plane mr-3"></i> SEND MESSAGE
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="relative py-16 border-t border-slate-800/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12">
+                <div class="mb-8 md:mb-0">
+                    <span class="text-2xl font-bold orbitron gradient-text">STELLAR DYNAMICS</span>
+                    <p class="text-slate-400 mt-3 text-sm max-w-md">
+                        Exploring the universe's deepest mysteries through the lens of relativity and quantum physics.
+                    </p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-slate-400 hover:text-blue-400 transition-colors duration-300 text-xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-blue-400 transition-colors duration-300 text-xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-blue-400 transition-colors duration-300 text-xl">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-blue-400 transition-colors duration-300 text-xl">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-sm font-semibold orbitron text-slate-300 uppercase tracking-wider mb-4">EXPLORE</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-slate-400 hover:text-blue-400 text-sm transition-colors duration-300">Black Holes</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-blue-400 text-sm transition-colors duration-300">Wormholes</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-blue-400 text-sm transition-colors duration-300">Dark Matter</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-blue-400 text-sm transition-colors duration-300">Multiverse</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold orbitron text-slate-300 uppercase tracking-wider mb-4">LEARN</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-slate-400 hover:text-blue-400 text-sm transition-colors duration-300">Tutorials</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-blue-400 text-sm transition-colors duration-300">Research Papers</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-blue-400 text-sm transition-colors duration-300">Podcasts</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-blue-400 text-sm transition-colors duration-300">Documentaries</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold orbitron text-slate-300 uppercase tracking-wider mb-4">COMPANY</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-slate-400 hover:text-blue-400 text-sm transition-colors duration-300">About Us</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-blue-400 text-sm transition-colors duration-300">Careers</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-blue-400 text-sm transition-colors duration-300">Press</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-blue-400 text-sm transition-colors duration-300">Partners</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold orbitron text-slate-300 uppercase tracking-wider mb-4">LEGAL</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-slate-400 hover:text-blue-400 text-sm transition-colors duration-300">Privacy</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-blue-400 text-sm transition-colors duration-300">Terms</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-blue-400 text-sm transition-colors duration-300">Cookies</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-blue-400 text-sm transition-colors duration-300">Licenses</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-slate-800/30 text-center">
+                <p class="text-sm text-slate-500">
+                    &copy; 2023 Stellar Dynamics. All rights reserved. Made with <i class="fas fa-heart text-red-400"></i> in the universe.
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Parallax effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const planets = document.querySelectorAll('.planet');
+            const nebula = document.querySelector('.nebula');
+            const distortion = document.querySelector('.distortion');
+            const nav = document.querySelector('nav');
+            
+            // Scroll-based animations
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY;
+                
+                // Parallax for planets
+                planets.forEach((planet, index) => {
+                    const speed = 0.1 + (index * 0.03);
+                    const offset = scrollPosition * speed;
+                    planet.style.transform = `translateY(${offset}px) rotate(${offset/10}deg)`;
+                });
+                
+                // Parallax for nebula
+                const nebulaOffset = scrollPosition * 0.05;
+                nebula.style.transform = `translate(${nebulaOffset}px, ${nebulaOffset}px)`;
+                
+                // Navbar effect
+                if (scrollPosition > 50) {
+                    nav.classList.add('shadow-lg');
+                    nav.classList.add('border-blue-400/20');
+                } else {
+                    nav.classList.remove('shadow-lg');
+                    nav.classList.remove('border-blue-400/20');
+                }
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Launch button transition
+            const launchBtn = document.getElementById('launchBtn');
+            const pageTransition = document.getElementById('pageTransition');
+            
+            launchBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Start the transition animation
+                pageTransition.style.transform = 'scaleY(1)';
+                
+                // After animation completes, redirect to the app
+                setTimeout(() => {
+                    // In a real scenario, this would link to your separate app
+                    // window.location.href = "https://yourapp.com";
+                    alert("Transitioning to the Stellar Explorer app...");
+                    
+                    // For demo purposes, reset the transition after showing the alert
+                    setTimeout(() => {
+                        pageTransition.style.transform = 'scaleY(0)';
+                    }, 1000);
+                }, 1000);
+            });
+
+            
+            
+            // Animate elements when they come into view
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fadeIn');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.holographic-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
