@@ -1,0 +1,53 @@
+# Ignoră fișierele de mediu
+.env
+.env.local
+.env.*.local
+
+# Ignoră fișierele de log
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+*.log
+
+# Ignoră fișierele și directoarele de dependențe
+node_modules/
+jspm_packages/
+
+# Ignoră fișierele de build
+/dist/
+/build/
+
+# Ignoră fișierele specifice IDE-uri
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignoră fișierele generate de Docker
+docker-compose.override.yml
+.docker/
+docker-compose.yml
+
+# Ignoră fișierele de imagini Docker
+*.tar
+*.log
+Dockerfile*
+
+# Ignoră fișierele de volum Docker
+**/volumes/
+
+# Ignoră fișierele de testare și instrumente de testing
+coverage/
+*.lcov
+*.test.js
+*.spec.js
+
+# Ignoră fișierele temporare sau generate automat
+*.swp
+*.bak
+*.tmp
+*.DS_Store
+
+# Ignoră fișierele și directoarele specifice OS-ului
+Thumbs.db
+Desktop.ini

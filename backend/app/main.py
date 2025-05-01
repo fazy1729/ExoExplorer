@@ -1,17 +1,9 @@
-from fastapi import FastAPI, HTTPException, Query, Depends, status
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
-from typing import Optional
 import httpx
-import logging
 from fastapi.middleware.cors import CORSMiddleware
 import math
-from datetime import datetime, timedelta
-from jose import JWTError, jwt
-from passlib.context import CryptContext
-import secrets
-from pathlib import Path
+from fastapi.responses import RedirectResponse
 
 
 
@@ -20,7 +12,12 @@ app = FastAPI()
 
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/pages", StaticFiles(directory="views/pages"), name="pages")
 
+
+@app.get("/")
+def root():
+    return RedirectResponse(url="/pages/ExoExplorer.HTML")
 
 # Add CORS middleware
 app.add_middleware(

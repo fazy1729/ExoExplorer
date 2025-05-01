@@ -236,20 +236,35 @@
     <div class="satellite" style="top: 50%; left: 50%;"></div>
     
     <!-- Navigation -->
+   
+
     <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-opacity-50 bg-slate-900/50 border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <span class="text-2xl font-bold orbitron gradient-text">COSMIC RELATIVITY</span>
+                        <span class="text-2xl font-bold orbitron gradient-text">ExoExplorer</span>
                     </div>
-                </div>
-                <div class="hidden md:block">
+                </div>                <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#home" class="nav-link text-slate-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="#about" class="nav-link text-slate-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
-                        <a href="#timeline" class="nav-link text-slate-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Timeline</a>
+                        <!-- ... existing links ... -->
                         <a href="#explore" class="nav-link text-slate-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Explore</a>
+                        
+                        <!-- Dropdown for your pages -->
+                        <div class="relative group">
+                            <button class="nav-link text-slate-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium flex items-center">
+                                Simulations <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                            </button>
+                            <div class="absolute hidden group-hover:block bg-slate-800/90 backdrop-blur-md min-w-[200px] rounded-md shadow-lg z-10 border border-slate-700">
+                                <div class="py-1">
+                                    <a href="/pages/blackhole_simulator.html" class="block px-4 py-2 text-sm text-slate-200 hover:bg-slate-700/50">Blackhole Simulator</a>
+                                    <a href="/pages/earth.html" class="block px-4 py-2 text-sm text-slate-200 hover:bg-slate-700/50">Earth</a>
+                                    <a href="/pages/solar_system3d.html" class="block px-4 py-2 text-sm text-slate-200 hover:bg-slate-700/50">Solar System 3D</a>
+                                    <a href="/pages/stellar_data.html" class="block px-4 py-2 text-sm text-slate-200 hover:bg-slate-700/50">Stellar Data</a>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <a href="#contact" class="nav-link text-slate-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
                     </div>
                 </div>
@@ -262,10 +277,12 @@
                     <button class="text-slate-200 hover:text-white focus:outline-none">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
-                </div>
+                </div>            
             </div>
         </div>
     </nav>
+
+
     
     <!-- Hero Section -->
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -572,7 +589,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <div class="mb-6 md:mb-0">
-                        <span class="text-2xl font-bold orbitron gradient-text">COSMIC RELATIVITY</span>
+                        <span class="text-2xl font-bold orbitron gradient-text">ExoExplorer</span>
                         <p class="text-slate-400 mt-2 text-sm max-w-md">
                             Exploring the universe's deepest mysteries through the lens of relativity and quantum physics.
                         </p>
@@ -640,7 +657,7 @@
                 
                 <div class="mt-12 text-center">
                     <p class="text-sm text-slate-500">
-                        &copy; 2023 Cosmic Relativity. All rights reserved. Made with <i class="fas fa-heart text-red-400"></i> in the universe.
+                        &copy; 2025 ExoExplorer. All rights reserved. Made with <i class="fas fa-heart text-red-400"></i> in the universe.
                     </p>
                 </div>
             </div>
