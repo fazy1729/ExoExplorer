@@ -73,7 +73,7 @@
 
 
 ### 6. Terra
-![](exoexplorer/assets/screenshots/6-terra.jpg)  
+![](exoexplorer/assets/screenshots/6-terra.jpg.png)  
 *Terra*
 
 
