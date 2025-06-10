@@ -47,9 +47,9 @@
 
 
 ### 1. Pagina Principala
-| ![Explore The Cosmos](exoexplorer/assets/screenshots/mainpage1.png) | ![Our Mission](exoexplorer/assets/screenshots/mainpage2.png)      |  ![Cosmic Timeline](exoexplorer/assets/screenshots/mainpage3.jpg)
-|-------------------------------------------------------|---------------------------------------------------------------| |---------------------------------------------------------------| 
-| *Exploreaza Cosmosul*                                 | *Misiunea Noastra*                                            |  *Evenimente Istorice*
+| ![Explore The Cosmos](exoexplorer/assets/screenshots/mainpage1.png) |   ![Cosmic Timeline](exoexplorer/assets/screenshots/mainpage3.jpg)
+|-------------------------------------------------------|---------------------------------------------------------------| 
+| *Exploreaza Cosmosul*                                 | *Evenimente Istorice*                                           
 
 ### 2. Simulare 3D
 
@@ -57,25 +57,28 @@
 |-------------------------------------------------------|------------------------------------------------------------|
 | *Pamantul si Antares M*                               | *Steaua Polaris si Neptun*                                 |
 
-### 2. Simulare Relativitate
-![](assets/screenshots/2-relativitate.jpg)  
+### 3. Simulare Relativitate
+![](exoexplorer/assets/screenshots/2-relativitate.png)  
 *Curbura spațiului în jurul unei stele*
 
-### 3. Dashboard Date
-| ![Deep Space Analysis](exoexplorer/assets/screenshots/1-main.jpg) | ![Galactic Projections](exoexplorer/assets/screenshots/2-polaris.jpg) |
+### 4. Dashboard Date
+| ![Deep Space Analysis](exoexplorer/assets/screenshots/date1.jpg) | ![Galactic Projections](exoexplorer/assets/screenshots/date2.jpg) |
 |-------------------------------------------------------------------|-----------------------------------------------------------------------|
 | *Analiza date spatiale*                                           | *Exoplanete descoperite*                                              |
 
-### 4. Modul Orbită
-![](assets/screenshots/4-orbite.jpg)  
-*Simulare interactivă a planetelor*
+### 5. Modul Orbită
+| ![Solar System](exoexplorer/assets/screenshots/solarsistem1.jpg) | ![Saturn](exoexplorer/assets/screenshots/solarsistem2.jpg) |
+|-------------------------------------------------------------------|-----------------------------------------------------------------------|
+| *Sistemul Solar*                                           | *Detalii Saturn*                                              |
 
-### 5. Vizualizare Galactică
-![](assets/screenshots/5-galaxie.jpg)  
-*Harta 3D a Căii Lactee*
 
 ### 6. Terra
 ![](exoexplorer/assets/screenshots/6-terra.jpg)  
 *Terra*
+
+
+### 7. Black Hole Simulator
+![](exoexplorer/assets/screenshots/blackhole-simulator.jpg)  
+*Simulare Gaura Neagra*
 
 
