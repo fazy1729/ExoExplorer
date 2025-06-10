@@ -1,6 +1,13 @@
 # 🚀 Exo Explorer - Explorator Cosmic Interactiv
 
-*Visualizează date astronomice și curbura spațiului în timp real*
+*Vizualizeaza date astronomice și curbura spațiului în timp real*
+
+<div align="center">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react" alt="React">
+  <img src="https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js" alt="Three.js">
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs" alt="Node.js">
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker" alt="Docker">
+</div>
 
 ---
 
@@ -8,12 +15,8 @@
 1. [🚀 Despre Proiect](#-despre-proiect)
 2. [🛠 Tehnologii](#-tehnologii)
 3. [📸 Galerie](#-galerie)
-4. [⚙ Instalare](#-instalare)
-5. [🐳 Docker](#-docker)
-6. [🌌 API](#-api)
-7. [📚 Teorie](#-teorie)
-8. [🤝 Contribuții](#-contribuții)
-9. [📜 Licență](#-licență)
+4. [📚 Teorie](#-teorie)
+5. [📜 Licență](#-licență)
 
 ---
 
@@ -33,7 +36,7 @@
 | Node.js | Backend principal |
 | FastAPI | Microservicii Python |
 | Docker | Containerizare |
-| MongoDB | Baza de date |
+| MySQL | Baza de date |
 
 ---
 
@@ -80,5 +83,40 @@
 ### 7. Black Hole Simulator
 ![](exoexplorer/assets/screenshots/blackhole-simulator.jpg)  
 *Simulare Gaura Neagra*
+
+
+## 🌌 Teorie
+
+🌌 Relativitate Generală
+Descoperiți cum gravitația este descrisă ca o geometrie a spațiu-timpului, conform ecuațiilor lui Einstein, care modelează universul la scară mare, de la orbitele planetare până la găurile negre și expansiunea cosmică. Veți înțelege soluțiile exacte ale ecuațiilor și implicațiile lor fizice, precum precesia orbitelor și undele gravitaționale.
+
+⚛️ Mecanică Cuantică
+Intrați în lumea microscopică unde particulele subatomice și legile probabilistice guvernează materia și energia. Explorați principiile inseparabilității cuantice și provocările integrării mecanicii cuantice cu relativitatea generală pentru a construi o teorie unificată a naturii.
+
+🔭 Astrofizică
+Studiați fenomenele cosmice și proprietățile obiectelor cerești, de la stele și galaxii până la structura și evoluția universului. Aplicați teoriile fundamentale pentru a înțelege dinamica și interacțiunile la scară cosmică.
+
+🪐 Planete și Sisteme Planetare
+Analizați formarea, compoziția și mișcarea planetelor în cadrul sistemelor lor, folosind legile fizicii clasice și relativiste pentru a explica orbitele, rotațiile și fenomenele atmosferice.
+
+Caracteristici Interactive
+Simulări dinamice: Experimentați simulări interactive pentru a vizualiza efectele relativității asupra orbitelor sau fenomene cuantice în timp real.
+
+Explorare prin întrebări: Încercați scenarii „Ce-ar fi dacă...?” pentru a testa ipoteze și a observa consecințele fizice.
+
+Grafice și vizualizări: Urmăriți evoluția parametrilor fizici prin reprezentări grafice și vectoriale pentru o înțelegere profundă.
+
+Metode didactice moderne: Folosim tehnici interactive și investigative pentru a facilita învățarea și a stimula gândirea critică.
+
+Această colecție este concepută să vă inspire să explorați, să înțelegeți și să contribuiți la frontierele cunoașterii fizicii moderne, combinând eleganța teoriei cu interactivitatea practică. Pregătiți-vă să călătoriți de la cele mai mici particule până la cele mai îndepărtate galaxii!
+
+
+## 📜 Licență
+MIT License
+
+Copyright (c) 2023 [Manea Florin]
+
+Permisiunea este acordată, gratuit, oricărei persoane care obține o copie
+a acestui software și a documentației asociate („Software”),...
 
 
