@@ -88,18 +88,23 @@
 ## 🌌 Teorie
 
 🌌 Relativitate Generală
+
 Descoperiți cum gravitația este descrisă ca o geometrie a spațiu-timpului, conform ecuațiilor lui Einstein, care modelează universul la scară mare, de la orbitele planetare până la găurile negre și expansiunea cosmică. Veți înțelege soluțiile exacte ale ecuațiilor și implicațiile lor fizice, precum precesia orbitelor și undele gravitaționale.
 
 ⚛️ Mecanică Cuantică
+
 Intrați în lumea microscopică unde particulele subatomice și legile probabilistice guvernează materia și energia. Explorați principiile inseparabilității cuantice și provocările integrării mecanicii cuantice cu relativitatea generală pentru a construi o teorie unificată a naturii.
 
 🔭 Astrofizică
+
 Studiați fenomenele cosmice și proprietățile obiectelor cerești, de la stele și galaxii până la structura și evoluția universului. Aplicați teoriile fundamentale pentru a înțelege dinamica și interacțiunile la scară cosmică.
 
 🪐 Planete și Sisteme Planetare
+
 Analizați formarea, compoziția și mișcarea planetelor în cadrul sistemelor lor, folosind legile fizicii clasice și relativiste pentru a explica orbitele, rotațiile și fenomenele atmosferice.
 
 Caracteristici Interactive
+
 Simulări dinamice: Experimentați simulări interactive pentru a vizualiza efectele relativității asupra orbitelor sau fenomene cuantice în timp real.
 
 Explorare prin întrebări: Încercați scenarii „Ce-ar fi dacă...?” pentru a testa ipoteze și a observa consecințele fizice.
